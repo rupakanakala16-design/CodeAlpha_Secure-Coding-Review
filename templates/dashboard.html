@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard | Secure Coding Review & Vulnerability Assessment{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <div class="kicker"><i class="fa-solid fa-shield-virus"></i> SECURE CODING REVIEW</div>
+        <h1 class="hero-title">SECURE CODING REVIEW</h1>
+        <div class="hero-subtitle">
+            <span class="badge-internship">CodeAlpha Cyber Security Internship</span>
+            <span class="badge-task">Task 3</span>
+        </div>
+        <p class="hero-description">
+            Identify vulnerabilities, understand security risks, and improve application security through secure coding practices.
+        </p>
+        <div class="cta-row">
+            <a href="{{ url_for('security_review') }}" class="btn btn-primary"><i class="fa-solid fa-play"></i> Start Security Review</a>
+            <a href="{{ url_for('vulnerabilities') }}" class="btn btn-secondary"><i class="fa-solid fa-bug"></i> View Vulnerabilities</a>
+            <a href="{{ url_for('generate_report_route') }}" class="btn btn-accent" target="_blank"><i class="fa-solid fa-file-pdf"></i> Generate PDF Report</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon cyan"><i class="fa-solid fa-shield-cat"></i></div>
+                <div class="stat-value" data-target="{{ stats.total_vulnerabilities }}">0</div>
+                <div class="stat-label">Total Vulnerabilities</div>
+            </div>
+            <div class="stat-card red">
+                <div class="stat-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="stat-value" data-target="{{ stats.critical }}">0</div>
+                <div class="stat-label">Critical</div>
+            </div>
+            <div class="stat-card orange">
+                <div class="stat-icon orange"><i class="fa-solid fa-circle-exclamation"></i></div>
+                <div class="stat-value" data-target="{{ stats.high }}">0</div>
+                <div class="stat-label">High</div>
+            </div>
+            <div class="stat-card yellow">
+                <div class="stat-icon yellow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="stat-value" data-target="{{ stats.medium }}">0</div>
+                <div class="stat-label">Medium</div>
+            </div>
+            <div class="stat-card green">
+                <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="stat-value" data-target="{{ stats.low }}">0</div>
+                <div class="stat-label">Low</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="visual-panel">
+        <div class="canvas-header">
+            <span class="canvas-tag"><i class="fa-solid fa-cube"></i> Interactive 3D Security Shield</span>
+            <span class="status-indicator"><span class="pulse-dot"></span> Active Defense Node</span>
+        </div>
+        <div id="three-canvas"></div>
+    </div>
+</section>
+
+<section class="section-header">
+    <div>
+        <h2>Security Assessment Summary</h2>
+        <p>Target Application Overview & Security Posture Scores</p>
+    </div>
+    <a href="{{ url_for('security_review') }}" class="link-arrow">Full Assessment Details <i class="fa-solid fa-arrow-right"></i></a>
+</section>
+
+<div class="grid-2">
+    <div class="glass-card dashboard-card">
+        <div class="card-header-flex">
+            <div>
+                <div class="kicker">TARGET APPLICATION</div>
+                <h3>Student Login Web Application</h3>
+            </div>
+            <span class="status-badge completed"><i class="fa-solid fa-check-double"></i> REVIEW COMPLETED</span>
+        </div>
+        <div class="info-grid">
+            <div class="info-box">
+                <span class="label"><i class="fa-solid fa-code"></i> Technology</span>
+                <strong>Python + Flask + SQLite</strong>
+            </div>
+            <div class="info-box">
+                <span class="label"><i class="fa-solid fa-microscope"></i> Review Type</span>
+                <strong>Secure Coding Review</strong>
+            </div>
+            <div class="info-box">
+                <span class="label"><i class="fa-solid fa-chart-line"></i> Baseline Score</span>
+                <strong class="score-vulnerable">72 / 100</strong>
+            </div>
+            <div class="info-box">
+                <span class="label"><i class="fa-solid fa-shield-check"></i> Post-Fix Score</span>
+                <strong class="score-secure">92 / 100</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-card overview-card">
+        <div class="kicker">SECURITY CONTROLS EVALUATED</div>
+        <h3>Core Assurance Focus Areas</h3>
+        <div class="pill-row">
+            <span class="pill"><i class="fa-solid fa-filter"></i> Input Validation</span>
+            <span class="pill"><i class="fa-solid fa-database"></i> Parameterized SQL</span>
+            <span class="pill"><i class="fa-solid fa-key"></i> Environment Secrets</span>
+            <span class="pill"><i class="fa-solid fa-lock"></i> Werkzeug Password Hashing</span>
+            <span class="pill"><i class="fa-solid fa-user-shield"></i> Session Security</span>
+            <span class="pill"><i class="fa-solid fa-bug-slash"></i> Error Control</span>
+        </div>
+        <p class="summary-paragraph">
+            This project provides an educational demonstration of identifying code vulnerabilities, analyzing business impact, applying defensive design patterns, and generating submission-ready compliance documentation.
+        </p>
+    </div>
+</div>
+{% endblock %}

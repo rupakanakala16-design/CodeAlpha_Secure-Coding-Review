@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Security Review | Secure Coding Review{% endblock %}
+{% block content %}
+<section class="section-header">
+    <div>
+        <div class="kicker"><i class="fa-solid fa-clipboard-check"></i> AUDIT TARGET</div>
+        <h2>Security Review</h2>
+        <p>Comprehensive assessment of the target application source code and control implementation</p>
+    </div>
+    <div>
+        <a href="{{ url_for('generate_report_route') }}" class="btn btn-primary" target="_blank"><i class="fa-solid fa-file-pdf"></i> Export Audit PDF</a>
+    </div>
+</section>
+
+<div class="glass-card dashboard-card">
+    <div class="grid-2">
+        <div>
+            <div class="kicker">APPLICATION UNDER ASSESSMENT</div>
+            <h3 class="highlight-title">{{ app_name }}</h3>
+            <div class="info-grid">
+                <div class="info-box">
+                    <span class="label"><i class="fa-solid fa-layer-group"></i> Technology</span>
+                    <strong>{{ technology }}</strong>
+                </div>
+                <div class="info-box">
+                    <span class="label"><i class="fa-solid fa-magnifying-glass"></i> Review Type</span>
+                    <strong>Secure Coding Review</strong>
+                </div>
+                <div class="info-box">
+                    <span class="label"><i class="fa-solid fa-circle-check"></i> Status</span>
+                    <strong class="text-green">COMPLETED</strong>
+                </div>
+                <div class="info-box">
+                    <span class="label"><i class="fa-solid fa-gauge-simple-high"></i> Initial Security Score</span>
+                    <strong class="text-orange">{{ score }} / 100</strong>
+                </div>
+            </div>
+            
+            <div class="assessment-scope-box">
+                <h4><i class="fa-solid fa-bullseye"></i> Scope of Review</h4>
+                <p>
+                    The code review focused on authentication workflows, SQL database interaction layers, password storage strategies, input handling routines, and error management within the Flask backend.
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <div class="kicker">DISCOVERED FINDINGS SUMMARY</div>
+            <h3>Vulnerability Inventory</h3>
+            <div class="vuln-timeline">
+                {% for vuln in vulnerabilities %}
+                <div class="timeline-item">
+                    <div class="timeline-badge {{ vuln.severity|lower }}">
+                        {{ vuln.id }}
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-top">
+                            <span class="timeline-title">{{ vuln.name }}</span>
+                            <span class="badge {{ vuln.severity|lower }}">{{ vuln.severity }}</span>
+                        </div>
+                        <p class="timeline-desc">{{ vuln.description }}</p>
+                        <div class="timeline-meta">
+                            <span><i class="fa-solid fa-cubes"></i> {{ vuln.component }}</span>
+                            <span class="status-fixed"><i class="fa-solid fa-circle-check"></i> {{ vuln.status }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

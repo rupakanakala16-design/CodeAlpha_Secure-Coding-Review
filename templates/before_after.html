@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Before vs After Code | Secure Coding Review{% endblock %}
+{% block content %}
+<section class="section-header">
+    <div>
+        <div class="kicker"><i class="fa-solid fa-code-compare"></i> CODE COMPARISON</div>
+        <h2>Before vs After Code Review</h2>
+        <p>Direct code comparisons demonstrating vulnerable patterns and secure coding refactoring</p>
+    </div>
+</section>
+
+<div class="code-list">
+    {% for item in comparisons %}
+    <div class="glass-card comparison-wrapper">
+        <h3 class="comparison-title"><i class="fa-solid fa-file-code"></i> {{ item.title }}</h3>
+        <div class="comparison-grid">
+            <!-- Vulnerable Code Panel -->
+            <div class="code-panel vulnerable-panel">
+                <div class="code-panel-header">
+                    <span class="code-level vuln"><i class="fa-solid fa-bug"></i> Vulnerable Code</span>
+                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> Copy Code</button>
+                </div>
+                <pre class="code-block"><code>{{ item.vulnerable }}</code></pre>
+            </div>
+
+            <!-- Secure Code Panel -->
+            <div class="code-panel secure-panel">
+                <div class="code-panel-header">
+                    <span class="code-level secure"><i class="fa-solid fa-shield-check"></i> Secure Code</span>
+                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> Copy Code</button>
+                </div>
+                <pre class="code-block"><code>{{ item.secure }}</code></pre>
+            </div>
+        </div>
+        <div class="explanation">
+            <strong><i class="fa-solid fa-circle-info"></i> Security Analysis:</strong>
+            <p>{{ item.explanation }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

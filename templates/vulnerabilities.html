@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Vulnerabilities | Secure Coding Review{% endblock %}
+{% block content %}
+<section class="section-header">
+    <div>
+        <div class="kicker"><i class="fa-solid fa-bug-slash"></i> SECURITY FINDINGS</div>
+        <h2>Vulnerability Analysis</h2>
+        <p>Detailed breakdown of security weaknesses identified in the application source code</p>
+    </div>
+    <div class="filter-badges">
+        <span class="pill-badge critical">Critical: 1</span>
+        <span class="pill-badge high">High: 2</span>
+        <span class="pill-badge medium">Medium: 2</span>
+        <span class="pill-badge low">Low: 0</span>
+    </div>
+</section>
+
+<div class="vuln-list">
+    {% for vuln in vulnerabilities %}
+    <div class="glass-card vuln-card-full {{ vuln.severity|lower }}-border">
+        <div class="vuln-card-header">
+            <div class="vuln-title-group">
+                <span class="vuln-id-tag">{{ vuln.id }}</span>
+                <h3>{{ vuln.name }}</h3>
+            </div>
+            <div class="vuln-badge-group">
+                <span class="badge {{ vuln.severity|lower }}"><i class="fa-solid fa-triangle-exclamation"></i> {{ vuln.severity }}</span>
+                <span class="badge-status-fixed"><i class="fa-solid fa-shield-check"></i> {{ vuln.status }}</span>
+            </div>
+        </div>
+
+        <div class="vuln-details-grid">
+            <div class="vuln-box">
+                <span class="box-label"><i class="fa-solid fa-align-left"></i> Description</span>
+                <p>{{ vuln.description }}</p>
+            </div>
+            <div class="vuln-box">
+                <span class="box-label"><i class="fa-solid fa-skull-crossbones"></i> Security Impact</span>
+                <p>{{ vuln.impact }}</p>
+            </div>
+            <div class="vuln-box">
+                <span class="box-label"><i class="fa-solid fa-cube"></i> Affected Component</span>
+                <p><code>{{ vuln.component }}</code></p>
+            </div>
+            <div class="vuln-box">
+                <span class="box-label"><i class="fa-solid fa-lightbulb"></i> Recommended Solution</span>
+                <p>{{ vuln.solution }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

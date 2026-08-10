@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}About Project | CodeAlpha Task 3{% endblock %}
+{% block content %}
+<section class="section-header">
+    <div>
+        <div class="kicker"><i class="fa-solid fa-graduation-cap"></i> INTERNSHIP PROJECT METADATA</div>
+        <h2>About The Project</h2>
+        <p>CodeAlpha Cyber Security Internship – Task 3 Submission Document</p>
+    </div>
+</section>
+
+<div class="about-grid">
+    <div class="glass-card about-card">
+        <div class="kicker">PROJECT IDENTIFICATION</div>
+        <h3>Secure Coding Review & Vulnerability Assessment</h3>
+        <div class="info-grid">
+            <div class="info-box">
+                <span class="label"><i class="fa-solid fa-user"></i> Candidate</span>
+                <strong>Rupa Kanakala</strong>
+            </div>
+            <div class="info-box">
+                <span class="label"><i class="fa-solid fa-building-columns"></i> Internship Program</span>
+                <strong>CodeAlpha Cyber Security</strong>
+            </div>
+            <div class="info-box">
+                <span class="label"><i class="fa-solid fa-list-check"></i> Assigned Task</span>
+                <strong>Task 3: Secure Coding Review</strong>
+            </div>
+            <div class="info-box">
+                <span class="label"><i class="fa-solid fa-file-pdf"></i> Deliverable</span>
+                <strong>Web Dashboard + 12-Page PDF</strong>
+            </div>
+        </div>
+
+        <div class="about-section-body">
+            <h4><i class="fa-solid fa-bullseye"></i> Project Objective</h4>
+            <p>
+                The objective of this project is to build a comprehensive secure coding review system demonstrating how security flaws in web applications are systematically identified, categorized by risk severity, remediated using secure coding practices, and documented in an executive-ready security assessment report.
+            </p>
+        </div>
+    </div>
+
+    <div class="glass-card structure-card">
+        <div class="kicker">REPOSITORY STRUCTURE</div>
+        <h3>GitHub Deliverables Directory</h3>
+        <pre class="structure-block"><code>Secure-Coding-Review/
+├── app.py                  # Main Flask Web Dashboard & Controller
+├── vulnerable_app.py       # Insecure Sample App (Educational Demo)
+├── secure_app.py           # Hardened Sample App (Remediated Baseline)
+├── report_generator.py     # ReportLab 12-Page PDF Engine
+├── requirements.txt        # Python Dependencies Specification
+├── README.md               # GitHub Project Documentation
+├── templates/              # Jinja2 HTML Page Layouts
+│   ├── base.html
+│   ├── dashboard.html
+│   ├── security_review.html
+│   ├── vulnerabilities.html
+│   ├── before_after.html
+│   ├── recommendations.html
+│   ├── secure_code.html
+│   └── about.html
+├── static/                 # Styles & Interactive 3D Visuals
+│   ├── css/styles.css
+│   └── js/script.js
+└── reports/                # Generated PDF Compliance Reports
+    └── Secure_Coding_Review_Report.pdf</code></pre>
+    </div>
+</div>
+{% endblock %}

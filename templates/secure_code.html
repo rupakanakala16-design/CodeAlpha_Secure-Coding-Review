@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Secure Code Implementation | Secure Coding Review{% endblock %}
+{% block content %}
+<section class="section-header">
+    <div>
+        <div class="kicker"><i class="fa-solid fa-lock"></i> HARDENED IMPLEMENTATION</div>
+        <h2>Secure Code Baseline</h2>
+        <p>Demonstrating secure implementation patterns in Python + Flask + SQLite</p>
+    </div>
+</section>
+
+<div class="grid-2">
+    <div class="glass-card feature-list-card">
+        <div class="kicker">DEFENSIVE CONTROLS IMPLEMENTED</div>
+        <h3>Secure Application Controls</h3>
+        <ul class="secure-feature-list">
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>Input Validation:</strong> Strictly restricts username and password format & length.</li>
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>Parameterized Queries:</strong> Eliminates SQL injection risks with tuple parameters.</li>
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>Password Hashing:</strong> Leverages Werkzeug scrypt/pbkdf2 hashing algorithms.</li>
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>Environment Variables:</strong> Retrieves application secrets using <code>os.getenv()</code>.</li>
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>Session Management:</strong> Utilizes Flask cryptographically signed cookies.</li>
+            <li><i class="fa-solid fa-circle-check text-green"></i> <strong>Error Handling:</strong> Returns generic 400/401 messages without exposing stack trace.</li>
+        </ul>
+    </div>
+
+    <div class="glass-card runner-card">
+        <div class="kicker">EXECUTABLE DEMO FILES</div>
+        <h3>Sample Application Drivers</h3>
+        <p>Both vulnerable and secure sample applications are included in the repository for local testing:</p>
+        <div class="command-box">
+            <span class="cmd-label">Run Intentionally Vulnerable Demo:</span>
+            <code>python vulnerable_app.py</code>
+        </div>
+        <div class="command-box">
+            <span class="cmd-label">Run Hardened Secure Demo:</span>
+            <code>python secure_app.py</code>
+        </div>
+    </div>
+</div>
+
+<div class="glass-card code-view-section">
+    <div class="kicker">CODE HIGHLIGHT</div>
+    <h3>Secure Authentication Handler (secure_app.py)</h3>
+    <div class="code-panel secure-panel">
+        <div class="code-panel-header">
+            <span class="code-level secure"><i class="fa-solid fa-shield-halved"></i> secure_app.py</span>
+            <button class="copy-btn"><i class="fa-regular fa-copy"></i> Copy Code</button>
+        </div>
+        <pre class="code-block"><code>@app.route('/login', methods=['POST'])
+def login():
+    username = request.form.get('username', '').strip()
+    password = request.form.get('password', '')
+
+    # 1. Input Length & Format Validation
+    if not username or len(username) < 3 or len(username) > 30:
+        return 'Invalid username format', 400
+
+    if not password or len(password) < 8:
+        return 'Invalid password length', 400
+
+    # 2. Parameterized Database Query
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+    conn.close()
+
+    # 3. Secure Hash Verification & Session Creation
+    if user and check_password_hash(user['password_hash'], password):
+        session['username'] = username
+        return redirect(url_for('index'))
+
+    # 4. Safe Generic Error Response
+    return 'Invalid credentials', 401</code></pre>
+    </div>
+</div>
+{% endblock %}
